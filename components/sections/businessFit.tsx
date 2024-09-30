@@ -9,27 +9,30 @@ export default function BusinessFit() {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-white mb-6">Business Fit</h2>
           <p className="text-lg text-muted-foreground">
-            Discover how Velseo scales with your business, providing automated SEO solutions and enterprise-level security.
+            Discover how Veloseo scales with your business, providing automated SEO solutions and enterprise-level security.
           </p>
         </div>
         {/* Grille de cartes Business Fit */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {businessFit.map((feature, index) => (
-            const Icon = Icons[feature.icon || "nextjs"];
-            return (
+          {businessFit.map((feature, index) => {
+            const Icon = Icons[feature.icon || "nextjs"]; // Déclare la variable ici
 
-                <div key={index} className="bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition-shadow duration-300 ease-in-out">
-              {/* Icône */}
-              <div className="flex justify-center mb-4">
-                <Icons />
+            return (
+              <div
+                key={index}
+                className="bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition-shadow duration-300 ease-in-out"
+              >
+                {/* Icône */}
+                <div className="flex justify-center mb-4">
+                  <Icon className="w-6 h-6 text-white" /> {/* Utilisation de l'icône */}
+                </div>
+                {/* Titre */}
+                <h3 className="text-xl font-bold text-white">{feature.title}</h3>
+                {/* Description */}
+                <p className="mt-2 text-muted-foreground">{feature.description}</p>
               </div>
-              {/* Titre */}
-              <h3 className="text-xl font-bold text-white">{feature.title}</h3>
-              {/* Description */}
-              <p className="mt-2 text-muted-foreground">{feature.description}</p>
-            </div>
-          ))}
-        )
+            );
+          })}
         </div>
       </div>
     </section>
