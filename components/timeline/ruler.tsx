@@ -123,6 +123,7 @@ const Ruler = (props: RulerProps) => {
       setCanvasContext(context);
       resize(canvas, context, scrollPos);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

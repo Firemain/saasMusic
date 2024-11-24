@@ -106,6 +106,7 @@ const Timeline = () => {
       eventsHandler.unsubscribe();
       canvas.purge();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleOnScrollH = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
