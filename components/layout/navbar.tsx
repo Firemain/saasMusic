@@ -23,8 +23,6 @@ interface NavBarProps {
 export function NavBar({ scroll = false }: NavBarProps) {
   const scrolled = useScroll(50);
   const { data: session, status } = useSession();
-  const { setShowSignInModal } = useContext(ModalContext);
-
   const selectedLayout = useSelectedLayoutSegment();
 
   const links = marketingConfig.mainNav;
@@ -85,16 +83,17 @@ export function NavBar({ scroll = false }: NavBarProps) {
               </Button>
             </Link>
           ) : status === "unauthenticated" ? (
-            <Button
-              className="hidden gap-2 px-5 md:flex"
-              variant="default"
-              size="sm"
-              rounded="full"
-              onClick={() => setShowSignInModal(true)}
-            >
-              <span>Sign In</span>
-              <Icons.arrowRight className="size-4" />
-            </Button>
+            <Link href="/login" className="hidden md:block">
+              <Button
+                className="hidden gap-2 px-5 md:flex"
+                variant="default"
+                size="sm"
+                rounded="full"
+              >
+                <span>Sign In</span>
+                <Icons.arrowRight className="size-4" />
+              </Button>
+            </Link>
           ) : (
             <Skeleton className="hidden h-9 w-28 rounded-full lg:flex" />
           )}
