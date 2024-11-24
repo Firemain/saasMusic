@@ -4,7 +4,7 @@ import { prisma } from "@/lib/db";
 
 export async function DELETE(
   req: NextRequest,
-  context: { params: Record<string, string | string[]> }
+  { params }: { params: {} }
 ) {
   const session = await auth();
   
