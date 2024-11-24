@@ -25,12 +25,14 @@ function DeleteAccountModal({
 
   async function deleteAccount() {
     setDeleting(true);
-    await fetch(`/api/user`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(async (res) => {
+    try {
+      const res = await fetch("/api/user", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
       if (res.status === 200) {
         // delay to allow for the route change to complete
         await new Promise((resolve) =>
@@ -46,7 +48,10 @@ function DeleteAccountModal({
         const error = await res.text();
         throw error;
       }
-    });
+    } catch (error) {
+      setDeleting(false);
+      throw error;
+    }
   }
 
   return (
@@ -67,8 +72,6 @@ function DeleteAccountModal({
           <b>Warning:</b> This will permanently delete your account and your
           active subscription!
         </p>
-
-        {/* TODO: Use getUserSubscriptionPlan(session.user.id) to display the user's subscription if he have a paid plan */}
       </div>
 
       <form
