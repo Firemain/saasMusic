@@ -48,7 +48,7 @@ const Timeline = () => {
     const canvasBoudingX =
       canvasElRef.current?.getBoundingClientRect().x! +
       canvasElRef.current?.clientWidth!;
-    const playHeadPos = position - scrollLeft;
+    const playHeadPos = position - scrollLeft + 40;
     
     if (playHeadPos >= canvasBoudingX) {
       const scrollDivWidth = horizontalScrollbarVpRef.current?.clientWidth!;

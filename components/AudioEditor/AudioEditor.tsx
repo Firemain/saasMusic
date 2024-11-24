@@ -26,8 +26,12 @@ const AudioEditorPro = () => {
     const newFile = new File([file], `${Date.now()}-${file.name}`, {
       type: file.type
     });
+
+    const objectName = file.name;
     
     const objectUrl = URL.createObjectURL(newFile);
+
+    console.log("Object name:", objectName)
     
     dispatch(ADD_AUDIO, {
       payload: {
@@ -42,7 +46,7 @@ const AudioEditorPro = () => {
         },
         details: {
           src: objectUrl,
-          name: file.name,
+          name: "Test",
           volume: 50
         }
       }

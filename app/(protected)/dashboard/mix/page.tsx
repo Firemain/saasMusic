@@ -40,7 +40,7 @@ function MixPage() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 overflow-hidden">
       <h1 className="text-xl font-bold mb-4">Créer un Mix</h1>
       <div className="mb-4">
         <Select onValueChange={(value) => setSelectedPlaylist(playlists.find(playlist => playlist.id === value)?.name || '')}>
