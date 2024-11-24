@@ -24,7 +24,7 @@ export default function BusinessFit() {
               >
                 {/* Icône */}
                 <div className="flex justify-center mb-4">
-                  <Icon className="w-6 h-6 text-white" /> {/* Utilisation de l'icône */}
+                  <Icon className="size-6 text-white" /> {/* Utilisation de l'icône */}
                 </div>
                 {/* Titre */}
                 <h3 className="text-xl font-bold text-white">{feature.title}</h3>

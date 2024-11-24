@@ -12,7 +12,7 @@ const Player = () => {
 
   useEffect(() => {
     setPlayerRef(playerRef);
-  }, []);
+  }, [setPlayerRef]);
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -42,9 +42,9 @@ const Player = () => {
         className="hover:bg-white/10"
       >
         {isPlaying ? (
-          <PauseCircle className="h-6 w-6" />
+          <PauseCircle className="size-6" />
         ) : (
-          <PlayCircle className="h-6 w-6" />
+          <PlayCircle className="size-6" />
         )}
       </Button>
     </div>

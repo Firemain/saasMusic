@@ -70,7 +70,7 @@ interface CardProps {
             onClick={() => setSelectedId(selectedId === card.id ? null : card.id)}
           >
                     {/* Affichage conditionnel du SVG ou de l'image au-dessus du titre */}
-                    <Icon className="w-6 h-6 mb-4" /> {/* Affichage de l'icône ici */}
+                    <Icon className="size-6 mb-4" /> {/* Affichage de l'icône ici */}
                     
                     <h2 className="text-xl font-bold text-white text-center mb-4">
                       {card.title}

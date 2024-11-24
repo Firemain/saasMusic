@@ -2,6 +2,7 @@ import { useCurrentPlayerFrame } from "@/hooks/use-current-frame";
 import useStore from "@/store/store";
 import { timeMsToUnits, unitsToTimeMs } from "@designcombo/timeline";
 import { MouseEvent, TouchEvent, useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
 
 const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
   const playheadRef = useRef<HTMLDivElement>(null);
@@ -13,9 +14,9 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
   const [dragStartX, setDragStartX] = useState(0);
   const [dragStartPosition, setDragStartPosition] = useState(position);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
 
   const handleMouseDown = (
     e:
@@ -28,17 +29,18 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
     setDragStartPosition(position);
   };
 
-  const handleMouseMove = (
-    e: globalThis.MouseEvent | globalThis.TouchEvent
-  ) => {
-    if (isDragging) {
-      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-      const delta = clientX - dragStartX;
-      const newPosition = dragStartPosition + delta;
-      const time = unitsToTimeMs(newPosition + scrollLeft, scale.zoom);
-      playerRef?.current?.seekTo((time * fps) / 1000);
-    }
-  };
+  const handleMouseMove = useCallback(
+    (e: globalThis.MouseEvent | globalThis.TouchEvent) => {
+      if (isDragging) {
+        const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+        const delta = clientX - dragStartX;
+        const newPosition = dragStartPosition + delta;
+        const time = unitsToTimeMs(newPosition + scrollLeft, scale.zoom);
+        playerRef?.current?.seekTo((time * fps) / 1000);
+      }
+    },
+    [isDragging, dragStartX, dragStartPosition, scrollLeft, scale.zoom, playerRef, fps]
+  );
 
   useEffect(() => {
     if (isDragging) {
@@ -59,7 +61,7 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
       document.removeEventListener("touchmove", handleMouseMove);
       document.removeEventListener("touchend", handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, handleMouseMove, handleMouseUp]);
 
   return (
     <div
@@ -78,7 +80,7 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
       }}
     >
       <div className="relative h-full">
-        <div className="absolute -top-1 transform -translate-x-1/2">
+        <div className="absolute -top-1 -translate-x-1/2">
           <svg height="12" viewBox="0 0 12 12" fill="none">
             <path
               fill="currentColor"
@@ -86,7 +88,7 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
             ></path>
           </svg>
         </div>
-        <div className="absolute top-0 transform -translate-x-1/2 w-0.5 h-full bg-white/50"></div>
+        <div className="absolute top-0 -translate-x-1/2 w-0.5 h-full bg-white/50"></div>
       </div>
     </div>
   );
