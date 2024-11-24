@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import { UserSubscriptionPlan } from "@/types";
 
@@ -27,6 +27,25 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
       : false;
   const [isYearly, setIsYearly] = useState<boolean>(!!isYearlyDefault);
   const { setShowSignInModal } = useContext(ModalContext);
+  
+  // Choisir par défaut l'abonnement de l'utilisateur ou l'abonnement "Expert"
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+
+  // Définir la carte par défaut après le premier rendu
+  useEffect(() => {
+    if (subscriptionPlan?.stripePriceId) {
+      const userPlan = pricingData.find(
+        (plan) => plan.stripeIds.monthly === subscriptionPlan.stripePriceId || plan.stripeIds.yearly === subscriptionPlan.stripePriceId
+      );
+      if (userPlan) {
+        setSelectedPlan(userPlan.title); // Définir la carte en fonction de l'abonnement de l'utilisateur
+      } else {
+        setSelectedPlan("Expert"); // Si l'utilisateur n'a pas d'abonnement ou plan non trouvé, par défaut "Expert"
+      }
+    } else {
+      setSelectedPlan("Expert"); // Par défaut, on choisit le plan "Expert" si pas d'abonnement
+    }
+  }, [subscriptionPlan]);
 
   const toggleBilling = () => {
     setIsYearly(!isYearly);
@@ -35,11 +54,12 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const PricingCard = ({ offer }: { offer: SubscriptionPlan }) => {
     return (
       <div
+        onClick={() => setSelectedPlan(offer.title)} // Met à jour la sélection lorsque la carte est cliquée
         className={cn(
-          "relative flex flex-col overflow-hidden rounded-3xl border shadow-sm",
-          offer.title.toLocaleLowerCase() === "basic"
-            ? "-m-0.5 border-2 border-purple-400"
-            : "",
+          "relative flex flex-col overflow-hidden rounded-3xl border shadow-sm cursor-pointer",
+          selectedPlan === offer.title // Applique la bordure violette si la carte est sélectionnée
+            ? "border-2 border-purple-400"
+            : "border-gray-300"
         )}
         key={offer.title}
       >

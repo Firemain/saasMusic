@@ -76,7 +76,6 @@ export const plansColumns = [
   "essentiel",
   "pro",
   "business",
-  "enterprise",
 ] as const;
 
 export const comparePlans: PlansRow[] = [
@@ -85,7 +84,6 @@ export const comparePlans: PlansRow[] = [
     essentiel: true,
     pro: true,
     business: true,
-    enterprise: true,
     tooltip: "Connectez facilement votre site web pour des recommandations SEO.",
   },
   {
@@ -93,7 +91,6 @@ export const comparePlans: PlansRow[] = [
     essentiel: null,
     pro: true,
     business: true,
-    enterprise: true,
     tooltip: "Connexion via GitHub pour analyser directement le code source.",
   },
   {
@@ -101,7 +98,6 @@ export const comparePlans: PlansRow[] = [
     essentiel: "Basique",
     pro: "Avancé",
     business: "Complet",
-    enterprise: "Personnalisé",
     tooltip: "Analyse de performance SEO basée sur les données Google APIs.",
   },
   {
@@ -109,7 +105,6 @@ export const comparePlans: PlansRow[] = [
     essentiel: null,
     pro: "Basique",
     business: "Avancée",
-    enterprise: "Complet",
     tooltip: "Suivi de vos concurrents avec des rapports réguliers.",
   },
   {
@@ -117,7 +112,6 @@ export const comparePlans: PlansRow[] = [
     essentiel: "Mensuels",
     pro: "Hebdomadaires",
     business: "Quotidiens",
-    enterprise: "Personnalisés",
     tooltip: "Fréquence des rapports sur la performance SEO.",
   },
   {
@@ -125,7 +119,6 @@ export const comparePlans: PlansRow[] = [
     essentiel: "Standard",
     pro: "Prioritaire",
     business: "24/7 avec gestionnaire",
-    enterprise: "VIP avec services personnalisés",
   },
   // Ajoute d'autres fonctionnalités ici
 ];

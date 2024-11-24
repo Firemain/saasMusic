@@ -14,26 +14,13 @@ export const sidebarLinks: SidebarNavItem[] = [
       },
       { href: "/dashboard", icon: "dashboard", title: "Dashboard" },
       {
-        href: "/dashboard/billing",
+        href: "/dashboard/playlist",
         icon: "billing",
-        title: "Billing",
+        title: "Playlist",
         authorizeOnly: UserRole.USER,
       },
-      { href: "/dashboard/charts", icon: "lineChart", title: "Charts" },
-      {
-        href: "/admin/orders",
-        icon: "package",
-        title: "Orders",
-        badge: 2,
-        authorizeOnly: UserRole.ADMIN,
-      },
-      {
-        href: "#/dashboard/posts",
-        icon: "post",
-        title: "User Posts",
-        authorizeOnly: UserRole.USER,
-        disabled: true,
-      },
+      { href: "/dashboard/mix", icon: "lineChart", title: "Mix", authorizeOnly: UserRole.USER },
+
     ],
   },
   {
@@ -41,13 +28,6 @@ export const sidebarLinks: SidebarNavItem[] = [
     items: [
       { href: "/dashboard/settings", icon: "settings", title: "Settings" },
       { href: "/", icon: "home", title: "Homepage" },
-      {
-        href: "#",
-        icon: "messages",
-        title: "Support",
-        authorizeOnly: UserRole.USER,
-        disabled: true,
-      },
     ],
   },
 ];
