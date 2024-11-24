@@ -8,13 +8,7 @@ import EditTrackForm from '@/components/playlist/edit-track'; // Ajustez le chem
 import { Label } from '@/components/ui/label';
 import { useParams } from 'next/navigation';
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-function PlaylistPage({ params }: Props) {
+function PlaylistPage({ params }) {
   type Track = {
     id: number;
     title: string;
